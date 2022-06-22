@@ -1,6 +1,10 @@
 package com.example.nytimesapp.utils
 
 object Constants {
-    const val BASE_URL = "https://api.nytimes.com/svc/mostpopular/v2/viewed/"
-    const val API_KEY = "5d78a326269b4b558d0dc71967550bc4"
+    const val BASE_URL = "https://api.nytimes.com/svc/"
+    const val API_KEY = "tcQ7tI2VSzYmGCBVRbQEvR7b09GF2j8B"
+
+    const val ONE_DAY = 1
+    const val ONE_WEEK = 7
+    const val ONE_MONTH = 30
 }
