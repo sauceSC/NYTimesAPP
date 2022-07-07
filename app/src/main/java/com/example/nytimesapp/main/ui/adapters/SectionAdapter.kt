@@ -5,10 +5,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nytimesapp.R
 import com.example.nytimesapp.main.api.model.SectionResponse
+import com.example.nytimesapp.main.model.Section
 import com.example.nytimesapp.main.ui.viewholders.SectionViewHolder
 
-class SectionAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val sectionData = mutableListOf<SectionResponse>()
+class SectionAdapter(
+    private val onClick: (Section) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val sectionData = mutableListOf<Section>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
@@ -20,6 +23,7 @@ class SectionAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when (holder) {
             is SectionViewHolder -> holder.onBind(item = sectionData[position])
         }
+        holder.itemView.setOnClickListener { sectionData[position].let{ onClick.invoke(it) } }
     }
 
     override fun getItemCount(): Int = sectionData.size
@@ -29,7 +33,7 @@ class SectionAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
 
-    fun setItems(newList: List<SectionResponse>) {
+    fun setItems(newList: List<Section>) {
         val oldList = ArrayList(sectionData)
         sectionData.clear()
         sectionData.addAll(newList)
@@ -38,8 +42,8 @@ class SectionAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     private fun getDiffCallback(
-        oldList: List<SectionResponse>,
-        newList: List<SectionResponse>,
+        oldList: List<Section>,
+        newList: List<Section>,
     ) = object : DiffUtil.Callback() {
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

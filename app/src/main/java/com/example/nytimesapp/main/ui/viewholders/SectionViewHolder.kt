@@ -6,6 +6,7 @@ import com.example.nytimesapp.common.basemvp.BaseViewHolder
 import com.example.nytimesapp.databinding.SectionItemBinding
 import com.example.nytimesapp.main.api.model.SectionResponse
 import com.example.nytimesapp.main.api.model.ViewedArticleResponse
+import com.example.nytimesapp.main.model.Section
 
 class SectionViewHolder(
     binding: SectionItemBinding
@@ -17,10 +18,9 @@ class SectionViewHolder(
         SectionItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
-    override fun onBind(item: SectionResponse) {
+    fun onBind(item: Section) {
         with(binding){
             tvSectionName.text = item.displayName
-
         }
     }
 

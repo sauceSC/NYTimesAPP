@@ -12,6 +12,8 @@ import com.example.nytimesapp.databinding.FragmentSectionsBinding
 import com.example.nytimesapp.databinding.SectionItemBinding
 import com.example.nytimesapp.main.api.model.SectionResponse
 import com.example.nytimesapp.main.api.model.ViewedArticleResponse
+import com.example.nytimesapp.main.model.Section
+import com.example.nytimesapp.main.model.ViewedArticle
 import com.example.nytimesapp.main.ui.MainContract
 import com.example.nytimesapp.main.ui.adapters.SectionAdapter
 import org.koin.android.ext.android.inject
@@ -19,7 +21,7 @@ import org.koin.android.ext.android.inject
 class SectionsFragment : BaseFragmentMvp<MainContract.View, MainContract.Presenter>(R.layout.fragment_sections), MainContract.View {
 
     private val sectionAdapter: SectionAdapter by lazy{
-        SectionAdapter()
+        SectionAdapter(onClick = { onClick(it) } )
     }
     private lateinit var binding: FragmentSectionsBinding
 
@@ -49,13 +51,20 @@ class SectionsFragment : BaseFragmentMvp<MainContract.View, MainContract.Present
         presenter.detach()
     }
 
-    override fun showNews(results: List<ViewedArticleResponse>) {
+    override fun showNews(results: List<ViewedArticle>) {
         TODO("Not yet implemented")
     }
 
-    override fun showSections(results: List<SectionResponse>) {
+    override fun showSections(results: List<Section>) {
         sectionAdapter.setItems(results)
     }
 
+    private fun onClick(section : Section){
+        val fragment =  NewsBoardFragment()
+        val bundle = Bundle()
+        bundle.putString("section", section.displayName)
+        fragment.arguments = bundle
+        replaceFragment(fragment)
+    }
 
 }

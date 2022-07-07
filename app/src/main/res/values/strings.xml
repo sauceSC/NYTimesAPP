@@ -13,4 +13,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nytimes">NYTIMES</string>
     <string name="section">section</string>
+    <string name="article_title_example">New York Times article title example for NYTimes App</string>
+    <string name="article_published_date_example">Published at: 2022–06–05</string>
+    <string name="article_section_example">The Learning Network</string>
+    <string name="article_description_example">description title example for NYTimes App</string>
+    <string name="day">Day</string>
+    <string name="week">Week</string>
+    <string name="month">Month</string>
 </resources>

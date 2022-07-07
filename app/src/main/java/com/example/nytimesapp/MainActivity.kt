@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 //        changeFragment(splashScreenFragment, R.id.container)
-        changeFragment(sectionsFragment, R.id.container)
-
+//        changeFragment(sectionsFragment, R.id.container)
+        changeFragment(newsBoardFragment, R.id.container)
     }
 }
