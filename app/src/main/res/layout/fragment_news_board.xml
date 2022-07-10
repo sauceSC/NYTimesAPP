@@ -6,13 +6,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.ui.fragments.NewsBoardFragment"
     android:orientation="vertical"
+    tools:background="@color/dark_background"
     >
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_nyt_big_logo"/>
 
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:background="@color/dark_background"
         >
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -32,7 +41,12 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="invisible"
+        android:layout_gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/news_board"
         android:layout_width="match_parent"

@@ -6,15 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nytimesapp.R
 import com.example.nytimesapp.main.model.ViewedArticle
 import com.example.nytimesapp.main.ui.viewholders.BigImageViewHolder
+import com.example.nytimesapp.main.ui.viewholders.DescriptionViewHolder
 import com.example.nytimesapp.main.ui.viewholders.SmallImageViewHolder
 
 class MainBoardAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val news = mutableListOf<ViewedArticle>()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
+            R.layout.description_article_item -> DescriptionViewHolder(parent)
             R.layout.main_arcticle -> BigImageViewHolder(parent)
             R.layout.small_image_article -> SmallImageViewHolder(parent)
             else -> throw IllegalStateException("Something went wrong in MainBoardAdapter")
@@ -24,10 +25,13 @@ class MainBoardAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is BigImageViewHolder -> holder.onBind(
-                news[position],
+                news[position]
             )
             is SmallImageViewHolder -> holder.onBind(
-                news[position],
+                news[position]
+            )
+            is DescriptionViewHolder -> holder.onBind(
+                news[position]
             )
             else -> throw IllegalStateException("Something went wrong in $position")
         }
@@ -36,7 +40,11 @@ class MainBoardAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemViewType(position: Int): Int {
         return when(position){
             0 -> R.layout.main_arcticle
-            else -> R.layout.small_image_article
+            else -> if(news[position].media.isNullOrEmpty()){
+                R.layout.description_article_item
+            } else {
+                R.layout.small_image_article
+            }
         }
     }
 

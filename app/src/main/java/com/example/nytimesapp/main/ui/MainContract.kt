@@ -13,6 +13,7 @@ interface MainContract : BaseFragmentContract {
     interface View : MvpView {
         fun showNews(results: List<ViewedArticle>)
         fun showSections(results: List<Section>)
+        fun showLoading(isLoading: Boolean)
     }
 
     interface Presenter: MvpPresenter<View>{

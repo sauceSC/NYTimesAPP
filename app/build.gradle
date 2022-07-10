@@ -72,16 +72,5 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
 
-    //Paging 3
-    def paging_version = "3.0.0-alpha12"
-    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
-    // alternatively - without Android dependencies for tests
-    testImplementation "androidx.paging:paging-common-ktx:$paging_version"
-
-    //Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
-
-    //
 
 }

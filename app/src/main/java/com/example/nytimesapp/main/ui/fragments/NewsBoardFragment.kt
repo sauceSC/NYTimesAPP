@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nytimesapp.R
 import com.example.nytimesapp.common.basemvp.BaseFragmentMvp
@@ -14,6 +15,7 @@ import com.example.nytimesapp.main.ui.MainContract
 import com.example.nytimesapp.main.ui.adapters.MainBoardAdapter
 import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class NewsBoardFragment :
     BaseFragmentMvp<MainContract.View, MainContract.Presenter>(R.layout.fragment_news_board),
@@ -31,7 +33,7 @@ class NewsBoardFragment :
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNewsBoardBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -41,7 +43,7 @@ class NewsBoardFragment :
         presenter.getNewsList(1)
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab!!.text){
+                when (tab!!.text) {
                     "Day" -> {
                         mainBoardAdapter.clearItems()
                         presenter.getNewsList(1)
@@ -49,10 +51,12 @@ class NewsBoardFragment :
                     "Week" -> {
                         mainBoardAdapter.clearItems()
                         presenter.getNewsList(7)
+
                     }
                     "Month" -> {
                         mainBoardAdapter.clearItems()
                         presenter.getNewsList(30)
+
                     }
                 }
             }
@@ -95,5 +99,9 @@ class NewsBoardFragment :
     override fun onDestroy() {
         super.onDestroy()
         presenter.detach()
+    }
+
+    override fun showLoading(isLoading: Boolean) {
+        binding.progressBar.isVisible = isLoading
     }
 }

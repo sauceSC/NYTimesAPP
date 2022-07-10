@@ -15,33 +15,10 @@ object Converter {
         status = response.status,
         copyright = response.copyright,
         numResults = response.numResults,
-        results = response.results?.let { Converter.newsFromNetwork(it) }
+        results = response.results?.let { newsFromNetwork(it) }
     )
 
-    private fun toSmallImageNews(
-        response: ViewedArticleResponse,
-        type: Int
-    ) = NewsTypes.SmallImageArticle(
-        section = response.section,
-        title = response.title,
-        publishedDate = response.publishedDate,
-        abstract = response.abstract,
-        media = mediaFromNetwork(response.media ),
-        type = type
-    )
-
-    private fun toBigImageNews(
-        response: ViewedArticleResponse,
-        type: Int
-    ) = NewsTypes.BigImageArticle(
-        section = response.section,
-        title = response.title,
-        publishedDate = response.publishedDate,
-        abstract = response.abstract,
-        media = mediaFromNetwork(response.media),
-        type = type
-    )
-    fun newsFromNetwork(response: List<ViewedArticleResponse>) : List<ViewedArticle> {
+    private fun newsFromNetwork(response: List<ViewedArticleResponse>) : List<ViewedArticle> {
         return response.map { newsFromNetwork(it) }
     }
 
@@ -71,25 +48,25 @@ object Converter {
     )
 
     private fun mediaFromNetwork(response: List<MediaResponse>?): List<Media> {
-        return response?.map { response ->
+        return response?.map {
             Media(
-                type = response.type,
-                subtype = response.subtype,
-                caption = response.caption,
-                copyright = response.copyright,
-                approvedForSyndication = response.approvedForSyndication,
-                mediaMetadata = mediaMetadataFromNetwork(response.mediaMetadata)
+                type = it.type,
+                subtype = it.subtype,
+                caption = it.caption,
+                copyright = it.copyright,
+                approvedForSyndication = it.approvedForSyndication,
+                mediaMetadata = mediaMetadataFromNetwork(it.mediaMetadata)
             )
         }!!
     }
 
     private fun mediaMetadataFromNetwork(response: List<MediaMetadataResponse>?): List<MediaMetadata> {
-        return response?.map { response ->
+        return response?.map {
             MediaMetadata(
-                url = response.url,
-                format = response.format,
-                height = response.height,
-                width = response.width
+                url = it.url,
+                format = it.format,
+                height = it.height,
+                width = it.width
             )
         }!!
     }

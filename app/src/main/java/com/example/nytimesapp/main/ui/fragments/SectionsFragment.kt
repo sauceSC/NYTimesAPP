@@ -27,14 +27,10 @@ class SectionsFragment : BaseFragmentMvp<MainContract.View, MainContract.Present
 
     override val presenter: MainContract.Presenter by inject()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSectionsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -57,6 +53,10 @@ class SectionsFragment : BaseFragmentMvp<MainContract.View, MainContract.Present
 
     override fun showSections(results: List<Section>) {
         sectionAdapter.setItems(results)
+    }
+
+    override fun showLoading(isLoading: Boolean) {
+        TODO("Not yet implemented")
     }
 
     private fun onClick(section : Section){
