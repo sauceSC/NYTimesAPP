@@ -20,4 +20,5 @@
     <string name="day">Day</string>
     <string name="week">Week</string>
     <string name="month">Month</string>
+    <string name="error_404_data_not_found">Error 404: Data Not Found</string>
 </resources>

@@ -1,13 +1,12 @@
 package com.example.nytimesapp.main.repository
 
 import com.example.nytimesapp.main.api.NYTimesAPI
-import com.example.nytimesapp.main.api.model.NewsResponse
-import com.example.nytimesapp.main.api.model.SectionListResponse
 import com.example.nytimesapp.main.converter.Converter
 import com.example.nytimesapp.main.model.News
 import com.example.nytimesapp.main.model.SectionList
-import com.example.nytimesapp.main.model.ViewedArticle
+import com.example.nytimesapp.main.model.search.Search
 import com.example.nytimesapp.utils.Constants
+import timber.log.Timber
 
 class NewsRemoteRepository(val api: NYTimesAPI) : NewsRepositoryRemote {
 
@@ -21,6 +20,11 @@ class NewsRemoteRepository(val api: NYTimesAPI) : NewsRepositoryRemote {
     override suspend fun getSections(): SectionList {
         val data = api.getNewsSection(Constants.API_KEY)
         return Converter.sectionFromNetwork(data)
+    }
+
+    override suspend fun getNewsBySections(section: String): Search {
+        val data = api.getNewsBySection(section, Constants.API_KEY)
+        return Converter.newsBySections(data)
     }
 
 

@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">#191919</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.NYTimesAPP.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_nyt_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.NYTimesAPP</item>
+    </style>
 </resources>

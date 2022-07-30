@@ -1,43 +1,33 @@
-package com.example.nytimesapp.main.ui.adapters
+package com.example.nytimesapp.sections.ui
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nytimesapp.R
-import com.example.nytimesapp.main.api.model.SectionResponse
 import com.example.nytimesapp.main.model.Section
-import com.example.nytimesapp.main.ui.viewholders.SectionViewHolder
+import timber.log.Timber
 
 class SectionAdapter(
     private val onClick: (Section) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val sectionData = mutableListOf<Section>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        when (viewType) {
-            R.layout.fragment_sections -> SectionViewHolder(parent)
-            else -> throw IllegalStateException("Unknown viewtype: $viewType")
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = SectionViewHolder(parent, onClick)
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is SectionViewHolder -> holder.onBind(item = sectionData[position])
         }
-        holder.itemView.setOnClickListener { sectionData[position].let{ onClick.invoke(it) } }
     }
 
     override fun getItemCount(): Int = sectionData.size
 
-    override fun getItemViewType(position: Int): Int = when (position) {
-            else -> R.layout.fragment_sections
-        }
-
 
     fun setItems(newList: List<Section>) {
+        Timber.tag("###").i("$newList")
         val oldList = ArrayList(sectionData)
         sectionData.clear()
         sectionData.addAll(newList)
-        notifyDataSetChanged()
         DiffUtil.calculateDiff(getDiffCallback(oldList, newList)).dispatchUpdatesTo(this)
     }
 

@@ -1,3 +1,10 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="48dp" android:height="48dp" android:viewportWidth="48" android:viewportHeight="48" android:tint="?attr/colorControlNormal">
-    <path android:fillColor="@android:color/white" android:pathData="M7,40Q5.8,40 4.9,39.1Q4,38.2 4,37V11Q4,9.8 4.9,8.9Q5.8,8 7,8H41Q42.2,8 43.1,8.9Q44,9.8 44,11V37Q44,38.2 43.1,39.1Q42.2,40 41,40ZM7,37H30.05V28.85H7V37Q7,37 7,37Q7,37 7,37ZM33.05,37H41Q41,37 41,37Q41,37 41,37V17.7H33.05ZM7,25.85H30.05V17.7H7Z"/>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:tint="?attr/colorControlNormal"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M7,42Q5.75,42 4.875,41.125Q4,40.25 4,39V6L7.35,9.35L10.65,6L14,9.35L17.35,6L20.65,9.35L24,6L27.35,9.35L30.65,6L34,9.35L37.35,6L40.65,9.35L44,6V39Q44,40.25 43.125,41.125Q42.25,42 41,42ZM7,39H22.5V25H7V39Q7,39 7,39Q7,39 7,39ZM25.5,39H41Q41,39 41,39Q41,39 41,39V33.5H25.5ZM25.5,30.5H41V25H25.5ZM7,22H41V16H7Z" />
 </vector>

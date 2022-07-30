@@ -24,16 +24,7 @@ class NewsPresenter(
         }
     }
 
-    override fun getSectionsList(){
-        presenterScope.launch {
-            try {
-                val data = newsInteractor.getSectionResults()
-                view?.showSections(data.section!!)
-            } catch (t: Throwable){
-                Timber.e(t.message)
-            }
-        }
-    }
+
 
 
 }

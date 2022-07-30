@@ -2,6 +2,7 @@ package com.example.nytimesapp.main.api
 
 import com.example.nytimesapp.main.api.model.NewsResponse
 import com.example.nytimesapp.main.api.model.SectionListResponse
+import com.example.nytimesapp.main.api.model.search.SearchResponseX
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -25,4 +26,10 @@ interface NYTimesAPI {
     suspend fun getNewsSection(
         @Query("api-key") apiKey: String
     ) : SectionListResponse
+
+    @GET("search/v2/articlesearch.json")
+    suspend fun getNewsBySection(
+        @Query("fq") sectionName: String,
+        @Query("api-key") apiKey: String
+    ) : SearchResponseX
 }

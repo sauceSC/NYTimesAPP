@@ -1,7 +1,6 @@
-package com.example.nytimesapp.main.ui.fragments
+package com.example.nytimesapp.sections.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,23 +8,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nytimesapp.R
 import com.example.nytimesapp.common.basemvp.BaseFragmentMvp
 import com.example.nytimesapp.databinding.FragmentSectionsBinding
-import com.example.nytimesapp.databinding.SectionItemBinding
-import com.example.nytimesapp.main.api.model.SectionResponse
-import com.example.nytimesapp.main.api.model.ViewedArticleResponse
 import com.example.nytimesapp.main.model.Section
-import com.example.nytimesapp.main.model.ViewedArticle
-import com.example.nytimesapp.main.ui.MainContract
-import com.example.nytimesapp.main.ui.adapters.SectionAdapter
+import com.example.nytimesapp.search.ui.SearchedFragment
 import org.koin.android.ext.android.inject
 
-class SectionsFragment : BaseFragmentMvp<MainContract.View, MainContract.Presenter>(R.layout.fragment_sections), MainContract.View {
+class SectionsFragment : BaseFragmentMvp<SectionsContract.View, SectionsContract.Presenter>(R.layout.fragment_sections), SectionsContract.View {
 
     private val sectionAdapter: SectionAdapter by lazy{
         SectionAdapter(onClick = { onClick(it) } )
     }
     private lateinit var binding: FragmentSectionsBinding
 
-    override val presenter: MainContract.Presenter by inject()
+    override val presenter: SectionsContract.Presenter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +31,9 @@ class SectionsFragment : BaseFragmentMvp<MainContract.View, MainContract.Present
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.getSectionsList()
         sectionsRecycler.layoutManager = LinearLayoutManager(context)
         sectionsRecycler.adapter = sectionAdapter
+        presenter.getSectionsList()
     }
 
     override fun onDestroy() {
@@ -47,24 +41,16 @@ class SectionsFragment : BaseFragmentMvp<MainContract.View, MainContract.Present
         presenter.detach()
     }
 
-    override fun showNews(results: List<ViewedArticle>) {
-        TODO("Not yet implemented")
-    }
-
     override fun showSections(results: List<Section>) {
         sectionAdapter.setItems(results)
     }
 
-    override fun showLoading(isLoading: Boolean) {
-        TODO("Not yet implemented")
-    }
-
     private fun onClick(section : Section){
-        val fragment =  NewsBoardFragment()
+        val fragment =  SearchedFragment()
         val bundle = Bundle()
         bundle.putString("section", section.displayName)
         fragment.arguments = bundle
-        replaceFragment(fragment)
+        changeFragment(fragment, R.id.container)
     }
 
 }

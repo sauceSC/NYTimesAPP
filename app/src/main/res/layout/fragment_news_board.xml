@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.ui.fragments.NewsBoardFragment"
     android:orientation="vertical"
-    tools:background="@color/dark_background"
+    android:background="@color/dark_background"
     >
 
     <ImageView
@@ -21,7 +21,9 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:background="@color/dark_background"
+        app:tabTextColor="@color/light_grey"
+        app:tabSelectedTextColor="@color/purple"
+        android:background="@color/dark_background"
         >
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -41,20 +43,38 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_gravity="center"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/news_board"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/small_image_article">
 
-    </androidx.recyclerview.widget.RecyclerView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@drawable/ic_search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/news_board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/small_image_article">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </FrameLayout>
+
+
 
 
 </LinearLayout>
