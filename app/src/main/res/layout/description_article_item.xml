@@ -10,12 +10,13 @@
         android:id="@+id/tv_article"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:maxWidth="300dp"
         android:text="@string/article_title_example"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="6dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,12 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         android:layout_marginTop="8dp"
-        android:gravity="center"
+        android:gravity="start"
         android:text="@string/article_description_example"
         android:textColor="@color/light_grey"
         android:textSize="20sp"
         android:maxWidth="360dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_article" />
 
@@ -42,7 +42,7 @@
         android:text="@string/article_published_date_example"
         android:textColor="@color/light_grey"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
     <TextView
@@ -53,7 +53,6 @@
         android:text="@string/article_section_example"
         android:textColor="@color/light_grey"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_date" />
 

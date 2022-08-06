@@ -105,8 +105,11 @@ class NewsBoardFragment :
     }
 
     private fun onClickViewedArticle(news: ViewedArticle) {
-        val intentBrowser = Intent(Intent.ACTION_VIEW, Uri.parse(news.url))
-        startActivity(intentBrowser)
+        val fragment =  BrowserFragment()
+        val bundle = Bundle()
+        bundle.putString("url", news.url)
+        fragment.arguments = bundle
+        changeFragment(fragment, R.id.container)
     }
 
 }

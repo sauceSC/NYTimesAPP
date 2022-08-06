@@ -38,6 +38,7 @@ class BigImageViewHolder(
                 .into(ivArticleMainImage)
         }
         tvArticle.text = news.title
+
         tvDate.text = news.publishedDate
         tvDescription.text = news.abstract
         tvSection.text = news.section

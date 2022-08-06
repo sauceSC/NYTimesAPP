@@ -12,6 +12,7 @@ import com.example.nytimesapp.R
 import com.example.nytimesapp.common.basemvp.BaseFragmentMvp
 import com.example.nytimesapp.databinding.FragmentBoardBySectionBinding
 import com.example.nytimesapp.main.model.search.Doc
+import com.example.nytimesapp.main.ui.fragments.BrowserFragment
 import com.example.nytimesapp.main.ui.fragments.NewsBoardFragment
 import com.example.nytimesapp.sections.ui.SectionsFragment
 import org.koin.android.ext.android.inject
@@ -62,8 +63,11 @@ class SearchedFragment :
 
 
     private fun onClickDoc(news: Doc){
-        val intentBrowser = Intent(Intent.ACTION_VIEW, Uri.parse(news.webUrl))
-        startActivity(intentBrowser)
+        val fragment =  BrowserFragment()
+        val bundle = Bundle()
+        bundle.putString("url", news.webUrl)
+        fragment.arguments = bundle
+        changeFragment(fragment, R.id.container)
     }
 
 }
